@@ -1,0 +1,104 @@
+﻿@using Eticaret.Entities
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<tbl_Urun>
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var popup = (tbl_Duyuru)Session["popup"];
+    var duy =(tbl_Duyuru)ViewBag.Duyuru;
+
+}
+<div class="ps-section__header mb-50">
+    <h3 class="ps-section__title" data-mask="Urunlerimiz">- Ürünlerimiz</h3>
+    <ul class="ps-masonry__filter">
+
+        <li class="current"><a href="#" data-filter="*">Hepsi</a></li>
+        <li><a href="#" data-filter=".nike">Nike</a></li>
+        <li><a href="#" data-filter=".adidas">Adidas</a></li>
+        <li><a href="#" data-filter=".puma">Puma</a></li>
+    </ul>
+</div>
+<div class="ps-section__content pb-50">
+    <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+        <div class="ps-masonry">
+            <div class="grid-sizer"></div>
+            @foreach (var urun in Model)
+            {
+                <div class="grid-item @urun.tbl_Marka.Marka_Adi">
+                    <div class="grid-item__content-wrapper">
+                        <div class="ps-shoe mb-30">
+                            <div class="ps-shoe__thumbnail">
+                                <img src="~/upload/@urun.Resim_URL" alt="" height="300"><a class="ps-shoe__overlay" href="/UrunDetay/Detay/@urun.Urun_Id"></a>
+                            </div>
+                            <div class="ps-shoe__content">
+                                <div class="ps-shoe__variants">
+                                    @if (urun.Stok != 0)
+                                    {
+                                        
+                                            <input type="hidden" value="@urun.Urun_Id" name="Urun_Id" />
+                                            <button type="submit" data-id="@urun.Urun_Id" class="btn btn-success mb-10 AnasayfaSepeteEkle">
+                                                Sepete Ekle<i class="ps-icon-next"></i>
+                                            </button>
+                                        
+                                    }
+                                </div>
+                                <div class="ps-shoe__detail">
+                                    <a class="ps-shoe__name" href="#">@urun.Urun_Adi</a>
+                                    @if (urun.Indirim_Oranı != 1)
+                                    {
+                                        <p class="ps-shoe__categories"><a href="#">@urun.tbl_Kategori.Kategori</a>,<a href="#"> @urun.tbl_Marka.Marka_Adi</a></p>
+                                        <span class="ps-shoe__price"><del>@urun.Fiyat</del> @(urun.Fiyat - (urun.Fiyat * (urun.Indirim_Oranı / 100))) TL</span>
+                                    }
+                                    else
+                                    {
+                                        <p class="ps-shoe__categories"><a href="#">@urun.tbl_Kategori.Kategori</a>,<a href="#"> @urun.tbl_Marka.Marka_Adi</a></p>
+                                        <span class="ps-shoe__price">@urun.Fiyat TL</span>
+
+                                    }
+                                    @if (urun.Stok == 0)
+                                    {
+                                        <p style="color: red">Ürün Stokta kalmamıştır</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <br /><br /><br />
+        @Html.PagedListPager(Model, page => Url.Action("AnaSayfa", new { page, pageSize = Model.PageSize }))
+
+
+
+    </div>
+</div>
+
+
+@if (popup.Duyuru_Id == 1 && duy != null)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>&nbsp; @duy.Mesaj</h4>
+                </div>
+                <div class="modal-body">
+                    <a href="@duy.Link">
+                        <img src="~/upload/@duy.ResimURL" width="550" />
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cok" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

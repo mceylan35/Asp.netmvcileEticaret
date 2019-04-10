@@ -1,0 +1,49 @@
+﻿@model Eticaret.Models.SiparisDetayModel
+@{
+    ViewBag.Title = "SiparisDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sipariş Detayı</h2>
+<div class="container">
+    <div class="ps-content pt-80 pb-80">
+        <div class="ps-container">
+            <div class="ps-cart-listing ps-table--whishlist">
+                <dt class="col-sm-2">Sipariş Numarasi</dt>
+                <dd class="col-sm-9">@Model.SiparisNumarasi</dd>
+                <dt class="col-sm-2">Toplam Tutar</dt>
+                <dd class="col-sm-9">@Model.ToplamTutar</dd>
+                <dt class="col-sm-2">Sipariş Tarihi</dt>
+                <dd class="col-sm-9">@Model.SiparisTarihi</dd>
+
+                <table class="table ps-cart__table">
+                    <thead>
+                    <tr>
+                        <th>Ürünler</th>
+                        <th>Fiyat</th>
+                        <th>Adet</th>
+                        <th>#</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var urun in Model.SiparisModels)
+                    {
+                        <tr>
+                            <td><a class="ps-product__preview" href="/UrunDetay/Detay/@urun.Urun_Id"><img class="mr-15" height="70" src="/Upload/@urun.Resim_Url" alt="">@urun.UrunAdi</a></td>
+                            <td>@urun.Fiyat</td>
+                            <td>@urun.Adet</td>
+                            <td><a class="ps-product-link" href="/UrunDetay/detay/@urun.Urun_Id">Urun Detay</a></td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+</div>

@@ -1,0 +1,68 @@
+﻿@using Eticaret.Entities
+
+@model IEnumerable<tbl_Yildiz>
+
+@{
+    /**/
+
+    ViewBag.Title = "do_action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="ps-products-wrap pt-80 pb-80">
+    <div class="ps-products" data-mh="product-listing">
+        <div class="ps-product__columns">
+
+            <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+                <div class="ps-masonry">
+                    <div class="grid-sizer"></div>
+                    @foreach (var urun in Model)
+                    {
+                        <div class="grid-item @urun.tbl_Urun.tbl_Marka.Marka_Adi">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-shoe mb-30">
+                                    <div class="ps-shoe__thumbnail">
+                                        <img src="~/upload/@urun.tbl_Urun.Resim_URL" alt="" height="240"><a class="ps-shoe__overlay" href="/UrunDetay/Detay/@urun.tbl_Urun.Urun_Id"></a>
+                                    </div>
+                                    <div class="ps-shoe__content">
+                                        <div class="ps-shoe__variants">
+                                            @if (urun.tbl_Urun.Stok != 0)
+                                            {
+                                                
+                                                     <button type="submit" data-id="@urun.Urun_Id" class="ps-btn mb-10 AnasayfaSepeteEkle">
+                                                         Sepete Ekle<i class="ps-icon-next"></i>
+                                                     </button>
+                                                 
+                                            }
+                                        </div>
+                                        <div class="ps-shoe__detail">
+                                            <a class="ps-shoe__name" href="#">@urun.tbl_Urun.Urun_Adi</a>
+                                            @if (urun.tbl_Urun.Indirim_Oranı != 1)
+                                            {
+                                                <p class="ps-shoe__categories"><a href="#">@urun.tbl_Urun.tbl_Kategori.Kategori</a>,<a href="#"> @urun.tbl_Urun.tbl_Marka.Marka_Adi</a></p>
+                                                <span class="ps-shoe__price"><del>@urun.tbl_Urun.Fiyat</del> @(urun.tbl_Urun.Fiyat - (urun.tbl_Urun.Fiyat * (urun.tbl_Urun.Indirim_Oranı / 100))) TL</span>
+                                            }
+                                            else
+                                            {
+                                                <p class="ps-shoe__categories"><a href="#">@urun.tbl_Urun.tbl_Kategori.Kategori</a>,<a href="#"> @urun.tbl_Urun.tbl_Marka.Marka_Adi</a></p>
+                                                <span class="ps-shoe__price">@urun.tbl_Urun.Fiyat TL</span>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ps-sidebar" data-mh="product-listing">
+    </div>
+</div>

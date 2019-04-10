@@ -1,0 +1,55 @@
+﻿@model Eticaret.Models.Cart
+<div class="ps-cart">
+    <a class="ps-cart__toggle" href="#"><span><i>(@Model.CartLines.Count)</i></span><i class="ps-icon-shopping-cart"></i></a>
+    <div class="ps-cart__listing">
+        @if (@Model.CartLines.Count != 0)
+        {
+            <div class="ps-cart__content">
+                @foreach (var sepet in Model.CartLines)
+                {
+
+
+                    <div class="ps-cart-item">
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            @Html.Hidden("Urun_Id", sepet.Urun.Urun_Id)
+                            <button type="submit" class="ps-cart-item__close"></button>
+
+                        }
+
+                        <div class="ps-cart-item__thumbnail"><a href="/Cart/index"></a><img src="~/upload/@sepet.Urun.Resim_URL" alt=""></div>
+                        <div class="ps-cart-item__content">
+                            <a class="ps-cart-item__title" href="/Urundetay/detay/@sepet.Urun.Urun_Id">@sepet.Urun.Urun_Adi</a>
+                            <p><span>Quantity:<i>@sepet.Adet</i></span><span>Total:<i>@(sepet.Urun.Fiyat * sepet.Adet)</i></span></p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="ps-cart__total">
+                <p>Number of items:<span>@Model.CartLines.Count</span></p>
+                <p>Item Total:<span>@Model.Total().ToString("c")</span></p>
+            </div>
+            <div class="ps-cart__footer">
+
+                @using (Html.BeginForm("CheckOut", "Cart"))
+                {
+
+                    <input type="submit" class="ps-btn" value="Satın Al" />
+
+
+
+                }
+
+
+            </div>
+        }
+        else
+        { <div class="ps-cart__content">
+              <div class="ps-cart-item">
+                  <div class="ps-cart-item__content">
+                      <div>Sepetiniz Boş</div>
+                  </div></div></div>
+        }
+    </div>
+</div>

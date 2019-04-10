@@ -1,0 +1,74 @@
+﻿@model Eticaret.Entities.tbl_Kullanici
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!------ Include the above in your HEAD tag ---------->
+<div class="container emp-profile">
+    <form method="get">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5>
+                    @Model.Ad
+                </h5>
+                  
+                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="/Profil/ProfiliDüzenle">Profili Düzenle</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Kullanıcı Adı</label>
+        </div>
+        <div class="col-md-6">
+            <p>@Model.Kullanici_Adi</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Ad</label>
+        </div>
+        <div class="col-md-6">
+            <p>@Model.Ad</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Soyad</label>
+        </div>
+        <div class="col-md-6">
+            <p>@Model.Soyad</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Telefon</label>
+        </div>
+        <div class="col-md-6">
+            <p>@Model.Telefon</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>E-posta</label>
+        </div>
+        <div class="col-md-6">
+            <p>@Model.Eposta</p>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</form>
+</div>
+

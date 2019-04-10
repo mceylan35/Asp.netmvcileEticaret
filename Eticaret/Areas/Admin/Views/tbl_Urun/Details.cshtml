@@ -1,0 +1,83 @@
+﻿@model Eticaret.Entities.tbl_Urun
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_Urun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Urun_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urun_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seri_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seri_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acilkama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acilkama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Kategori.Kategori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Kategori.Kategori)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Marka.Marka_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Marka.Marka_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Yildiz.Yildiz_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Yildiz.Yildiz_Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Urun_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

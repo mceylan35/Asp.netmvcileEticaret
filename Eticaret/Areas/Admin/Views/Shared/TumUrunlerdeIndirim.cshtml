@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Eticaret.Entities.tbl_Urun>
+
+@using (Html.BeginForm("TumIndirim", "Promosyon", FormMethod.Post))
+{
+    <div class="row" id="TumIndirim">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İndirim % kaç?</font></font></label>
+            <input type="int" class="form-control" id="validationCustom02" name="indirim" placeholder="Promosyon yüzdesini Giriniz" required="">
+            <div class="valid-feedback">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">
+                        İyi görünüyor!
+                    </font>
+                </font>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <br />
+            <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İndirim yap</font></font></button>
+        </div>
+    </div>
+}

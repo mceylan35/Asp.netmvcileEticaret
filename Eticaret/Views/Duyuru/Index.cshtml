@@ -1,0 +1,66 @@
+﻿@model Eticaret.Entities.tbl_Duyuru
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Duyuru</h2>
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Duyuru</font></font></h5>
+        <div class="card-body">
+            <form class="needs-validation was-validated" novalidate="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Duyuru Mesaj</font></font></label>
+                        <input type="text" class="form-control" id="validationCustom01" name="Mesaj" placeholder="Duyuru Mesajı Giriniz." required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Url</font></font></label>
+                        <input type="text" class="form-control" id="validationCustom01" name="Link" placeholder="Url Giriniz." required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="file"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resim</font></font></label>
+                        <input type="file" class="form-control" id="file" name="file" id="validationCustom02" placeholder="Resim Giriniz" required="">
+
+
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <br />
+                        <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ürünü Ekle</font></font></button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>

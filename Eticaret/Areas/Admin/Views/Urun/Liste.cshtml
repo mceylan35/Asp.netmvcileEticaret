@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Eticaret.Entities.tbl_Urun>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    var deleteAjaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "progress",
+        Confirm = "Ürünü Silmek istediğinize emin misiniz?",
+        OnSuccess = "OnSuccess(this)"
+    };
+
+    var PromosyonSilAjaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "progress",
+        Confirm = "Promosyonu Silmek istediğinize emin misiniz?",
+        OnSuccess = "promonsyonsil"
+    };
+
+    var TumPromosyonSilAjaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "progress",
+        Confirm = "Promosyonu Silmek istediğinize emin misiniz?",
+        OnSuccess = "tumpromonsyonsil"
+    };
+}
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <a href="/Admin/Urun/Ekle" class="btn btn-success">Ürün Ekle</a>
+    <br /><br />
+
+    <div class="card">
+        <h5 class="card-header">Ürünler</h5>
+        <div class="card-body" id="PromosyonSil">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ürün Adı</th>
+                        <th scope="col">Stok Adet</th>
+                        <th scope="col">Seri No</th>
+
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Fiyat</th>
+                        <th></th>
+                        <th>
+                            @Ajax.ActionLink("Tüm Promosyonları Sil", "TumPromosyonSil", new { Id = 5 }, TumPromosyonSilAjaxOptions, new { @class = "btn btn-primary btn-sm tumpromosyonsilmebutonu" })
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var urun in Model)
+                    {
+                        <tr>
+                            <th scope="row">@urun.Urun_Id</th>
+                            <td>@urun.Urun_Adi</td>
+                            <td>@urun.Stok</td>
+                            <td>@urun.Seri_No</td>
+
+                            <td>@urun.tbl_Kategori.Kategori</td>
+                            <td>@urun.Fiyat</td>
+                            <td>
+                                @Ajax.ActionLink("Sil", "Sil", new { Id = urun.Urun_Id }, deleteAjaxOptions, new { @class = "btn btn-success btn-sm" })
+                                @Html.ActionLink("Düzenle", "Duzenle", new { Id = urun.Urun_Id }, new { @class = "btn btn-warning btn-sm" })
+                            </td>
+                            <td>
+                                @if (urun.Indirim_Oranı != 1)
+                                {
+                                    @Ajax.ActionLink("Promosyon Sil", "PromosyonSil", new { Id = urun.Urun_Id }, PromosyonSilAjaxOptions, new { @class = "btn btn-info btn-sm promosyonsilmebutonu" })
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function OnSuccess(btn) {
+        $(btn).closest('tr').remove();
+    }
+    function promonsyonsil() {
+        this.remove();;
+    };
+    function tumpromonsyonsil() {
+        $(".tumpromosyonsilmebutonu").remove();;
+    };
+</script>

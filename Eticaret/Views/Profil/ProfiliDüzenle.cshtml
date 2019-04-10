@@ -1,0 +1,56 @@
+﻿@model Eticaret.Entities.tbl_Kullanici
+@{
+    /**/
+
+    ViewBag.Title = "ProfiliDüzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container emp-profile">
+    
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5>
+                    @Model.Ad
+                </h5>
+
+                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("ProfiliDüzenle", "Profil", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Kullanici_Adi)
+                @Html.TextBoxFor(m => m.Kullanici_Adi, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ad)
+                @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Soyad)
+                @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Telefon)
+                @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Eposta)
+                @Html.TextBoxFor(m => m.Eposta, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(m=>m.Kullanici_Id)
+            @Html.HiddenFor(m=>m.Sifre)
+            @Html.HiddenFor(m=>m.Rol_ID)
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        </div>
+    }
+        
+
+</div>

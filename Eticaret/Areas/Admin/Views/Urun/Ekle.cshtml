@@ -1,0 +1,120 @@
+﻿@model Eticaret.Entities.tbl_Urun
+
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ürün Ekleme Formu</font></font></h5>
+        <div class="card-body">
+            <form class="needs-validation was-validated" novalidate="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ürün Adı</font></font></label>
+                        <input type="text" class="form-control" id="validationCustom01" name="Urun_Adi" placeholder="Ürün Adını Giriniz." required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Açıklama</font></font></label>
+                        
+                        @Html.TextAreaFor(a => a.Aciklama, new { @id = "Icerik", @class = "form-control col-md-8", @rows = "200" ,@required="",@placeholder= "Açıklama Giriniz" })
+
+                        <script>CKEDITOR.replace("Icerik")</script>
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Seri No</font></font></label>
+                        <input type="text" class="form-control" id="validationCustom02" name="Seri_No" placeholder="Ürün Seri No Giriniz." required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Stok</font></font></label>
+                        <input type="number" class="form-control" id="validationCustom02" name="Stok" placeholder="Stok Giriniz" required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fiyat</font></font></label>
+                        <input type="number" class="form-control" id="validationCustom02" name="Fiyat" placeholder="Fiyat Giriniz" required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kategori</font></font></label>
+                        @Html.DropDownList("Kategori_ID", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marka</font></font></label>
+                        @Html.DropDownList("Marka_Id", null, htmlAttributes: new { @class = "form-control" })
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <label for="file"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resim</font></font></label>
+                        <input type="file" class="form-control" id="file" name="file" id="validationCustom02" placeholder="Resim Giriniz" required="">
+
+                    
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+                   
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <br />
+                        <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ürünü Ekle</font></font></button>
+                    </div>
+                </div>
+            
+                  
+               
+            </form>
+        </div>
+    </div>
+</div>
+

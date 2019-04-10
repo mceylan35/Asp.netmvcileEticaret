@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Eticaret.Entities.tbl_Favori>
+@{
+    ViewBag.Title = "Favorilerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Favorilerim</h2>
+
+<div class="container">
+    <div class="ps-content pt-80 pb-80">
+        <div class="ps-container">
+            <div class="ps-cart-listing ps-table--whishlist">
+             
+
+                <table class="table ps-cart__table">
+                    <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            
+                            <th>#</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var favori in Model)
+                        {
+                            <tr>
+                                <td><a class="ps-product__preview" href="/UrunDetay/Detay/@favori.Urun_ID"><img class="mr-15" height="70" src="/Upload/@favori.tbl_Urun.Resim_URL" alt="">@favori.tbl_Urun.Urun_Adi</a></td>
+                                <td>@favori.tbl_Urun.Fiyat</td>
+                                
+                                <td><a class="ps-product-link" href="/UrunDetay/detay/@favori.Urun_ID">Urun Detay</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        @using (Ajax.BeginForm("UrunBazliIndirim", "Promosyon", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "UrunBazliIndirim", OnSuccess = "UrunFormBasarili" }))
+        {
+            <button class="btn btn-success" type="submit" id="urun">Ürün Bazlı İndirim Yap</button>
+        }
+        <br/>
+        @using (Ajax.BeginForm("KategoriBazliIndirim", "Promosyon", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "KategoriBazliIndirim", OnSuccess = "KategoriFormBasarili" }))
+        {
+            <button class="btn btn-success" type="submit" id="kategori">Kategori Bazlı İndirim Yap</button>
+        }
+        <br />
+        @using (Ajax.BeginForm("TumUrunlerdeIndirim", "Promosyon", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TumUrunlerdeIndirim", OnSuccess = "TumFormBasarili" }))
+        {
+            <button class="btn btn-success" type="submit" id="Tum">Tüm Ürünlerde İndirim Yap</button>
+        }
+    </div>
+</div>
+
+<div id="UrunBazliIndirim"></div>
+<div id="KategoriBazliIndirim"></div>
+<div id="TumUrunlerdeIndirim"></div>
+@ViewBag.mesaj
+<script>
+    function TumFormBasarili() {
+        $('#Tum').click(function () {
+            $("#KategoriIndirim").hide();
+            $("#UrunIndirim").hide();
+        });
+    };
+    function UrunFormBasarili() {
+        $('#kategori').click(function () {
+            $("#UrunIndirim").hide();
+            $("#TumIndirim").hide();
+        });
+    };
+
+    function KategoriFormBasarili() {
+        $('#urun').click(function () {
+            $("#KategoriIndirim").hide();
+            $("#TumIndirim").hide();
+        });
+    };
+
+</script>

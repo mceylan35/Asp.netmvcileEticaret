@@ -1,0 +1,38 @@
+﻿@model Eticaret.Entities.tbl_Marka
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marka Düzenle</font></font></h5>
+        <div class="card-body">
+            <form class="needs-validation was-validated" novalidate="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <input type="hidden" value="@Model.Marka_Id" name="Marka_Id" />
+                        <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marka Adı</font></font></label>
+                        <input type="text" class="form-control" id="validationCustom01" value="@Model.Marka_Adi" name="Marka_Adi" placeholder="Marka Adını Giriniz." required="">
+                        <div class="valid-feedback">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    İyi görünüyor!
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <br />
+                        <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Markayı Ekle</font></font></button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>

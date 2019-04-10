@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Eticaret.Entities;
+using Eticaret.UnitOfWork;
 
 namespace Eticaret
 {
@@ -13,6 +15,17 @@ namespace Eticaret
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+        }
+        EfUnitOfWork uow = new EfUnitOfWork();
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            uow.GetRepository<Ziyaretci>().Add(new Ziyaretci
+            {
+                ZiyaretTarihi = DateTime.Now
+            });
+            uow.SaveChanges();
         }
     }
 }

@@ -1,0 +1,82 @@
+﻿@model Eticaret.Areas.Admin.Models.DashboardViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Ziyaretci Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.ToplamZiyaretciSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                    <i class="fa fa-eye fa-fw fa-sm text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Üye Kaydı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamUyeKayitSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                    <i class="fa fa-user fa-fw fa-sm text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Ürün Satış</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamUrunSatisSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/EnCokSatisYapilanBesUrun" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/EnCokSatisYapanKategori" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/EnCokSepeteEklenenler" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/GunlukUrunSiparisSayisi" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/GunlukKayitSayisi" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/GunlukZiyaretciSayisi" alt="Chart-1" />
+
+
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/HaftalikZiyaretciSayisi" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/HaftalikSiparisSayisi" alt="Chart-1" />
+    </div>
+    <div class="col-sm-6">
+        <img src="/Admin//Dashboard/HaftalikUyeSayisi" alt="Chart-1" />
+    </div>
+</div>

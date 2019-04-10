@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Eticaret.Entities.tbl_Marka>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var deleteAjaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "progress",
+        Confirm = "Markayı Silmek istediğinize emin misiniz?",
+        OnSuccess = "OnSuccess(this)"
+
+
+    };
+}
+<h2>@ViewBag.mesaj</h2>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <a href="/Admin/Marka/Ekle" class="btn btn-success">Marka Ekle</a>
+    <br /><br />
+
+    <div class="card">
+        <h5 class="card-header">Markalar</h5>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Marka adı</th>
+                    <th></th>
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var marka in Model)
+                {
+                    <tr>
+                        <th scope="row">@marka.Marka_Id</th>
+                        <td>@marka.Marka_Adi</td>
+                        <td>
+                            @Ajax.ActionLink("Sil", "Sil", new { Id = marka.Marka_Id }, deleteAjaxOptions, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Düzenle", "Duzenle", new { Id = marka.Marka_Id }, new { @class = "btn btn-warning btn-sm" })
+                        </td>
+                    </tr>
+                }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function OnSuccess(btn) {
+        $(btn).closest('tr').remove();
+    }
+</script>

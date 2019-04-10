@@ -1,0 +1,90 @@
+﻿@model Eticaret.Models.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sepet</h2>
+
+<main class="ps-main">
+    <div class="ps-content pt-80 pb-80">
+        <div class="ps-container">
+            <div class="ps-cart-listing">
+                @if (Model.CartLines.Count > 0)
+                {
+                    <table class="table ps-cart__table">
+                        <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            <th>Miktar</th>
+                            <th>Tutar</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach (var item in Model.CartLines)
+                        {
+
+
+                            <tr>
+                                <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="images/product/cart-preview/1.jpg" alt="">@item.Urun.Urun_Adi</a></td>
+                                <td>@item.Urun.Fiyat</td>
+                                <td>
+                                    <div class="form-group--number">
+                                        <button class="minus"><span>-</span></button>
+                                        <input class="form-control" type="text" value="@item.Adet">
+                                        <button class="plus"><span>+</span></button>
+                                    </div>
+                                </td>
+                                <td>@((item.Urun.Fiyat * item.Adet).ToString())</td>
+                                <td>
+                                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                    {
+                                        @Html.Hidden("Urun_Id", item.Urun.Urun_Id)
+
+                                        <button type="submit" class="ps-remove"></button>
+
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+
+                        </tbody>
+                    </table>
+                    <div class="ps-cart__actions">
+                        <div class="ps-cart__promotion">
+
+                            <div class="form-group">
+                                <a href="/Anasayfa/anasayfa" class="ps-btn ps-btn--gray">Alışverişe Devam</a>
+                            </div>
+                        </div>
+                        <div class="ps-cart__total">
+                            @using (Html.BeginForm("CheckOut","Cart")) {
+                                @Html.ValidationSummary()
+                                <h3>Toplam Tutar: <span> @Model.Total().ToString("c")</span></h3>
+                                 <button type="submit" class="ps-btn">Satın Al<i class="ps-icon-next"></i></button>
+                                
+                            }
+                        </div>
+                    </div>
+               }
+
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        Alışveriş Sepetinizde Ürün Bulunamadı.
+                    </div>
+                }
+
+              
+            
+            </div>
+        </div>
+    </div>
+
+
+</main>

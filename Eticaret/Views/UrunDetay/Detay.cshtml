@@ -1,0 +1,175 @@
+﻿-@using Eticaret.Entities
+@using Eticaret.UnitOfWork
+@model Eticaret.ViewModel.UrunDetayModelView
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var kullanici = ViewBag.Kullanici;
+    double? YildizSayisi = 0;
+    foreach (var item in Model.Yorumlar)
+    {
+        YildizSayisi += item.Yildiz;
+    }
+    double? YildizOrt = YildizSayisi / Model.Yorumlar.Count();
+    EfUnitOfWork uow = new EfUnitOfWork();
+    var GirenKullanici = uow.GetRepository<tbl_Kullanici>().Get(x => x.Kullanici_Adi == HttpContext.Current.User.Identity.Name);
+    SiparisDetay asd=new SiparisDetay();
+    if (HttpContext.Current.User.Identity.Name != "")
+    {
+        asd = uow.GetRepository<SiparisDetay>().GetAll(x => x.Siparis.KullaniciId == GirenKullanici.Kullanici_Id && x.UrunId == Model.Urun.Urun_Id).FirstOrDefault();
+    }
+
+
+
+}
+<main class="ps-main">
+    <div class="test">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="urundetay">
+
+        <div class="ps-product--detail pt-60">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-12 col-lg-offset-1">
+                        <div class="ps-product__thumbnail">
+                            <div class="ps-product__preview">
+                            </div>
+                            <div class="ps-product__image">
+                                <div class="item"><img class="zoom" width="320" height="400" src="~/upload/@Model.Urun.Resim_URL" alt="" data-zoom-image="~/upload/@Model.Urun.Resim_URL"></div>
+                            </div>
+                        </div>
+                        <div class="ps-product__info">
+                            <div class="ps-product__rating">
+                                @for (int i = 1; i <= YildizOrt; i++)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                }
+                                @for (double? i = YildizOrt + 1; i <= 5; i++)
+                                {
+                                    <span class="fa fa-star"></span>
+                                }
+                                <a href="#">(@Model.Yorumlar.Count()) Yorum yapılmıştır</a>
+                            </div>
+                            <h1>@Model.Urun.Urun_Adi</h1>
+                            <p class="ps-product__category"><a href="#"> @Model.Urun.tbl_Kategori.Kategori</a></p>
+                            @if (@Model.Urun.Indirim_Oranı != 1)
+                            {
+                                <h3 class="ps-product__price"> @Model.Urun.Fiyat TL <del>@(Model.Urun.Fiyat - (Model.Urun.Fiyat * (Model.Urun.Indirim_Oranı / 100))) TL</del></h3>
+                            }
+                            else
+                            {
+                                <h3 class="ps-product__price"> @Model.Urun.Fiyat TL</h3>
+                            }
+                            <div class="ps-product__block ps-product__quickview">
+                                <h4>Ürün Açıklama</h4>
+                                <p>@Html.Raw(Model.Urun.Aciklama)</p>
+                            </div>
+                            <div class="ps-product__shopping">
+                                @if (Model.Urun.Stok != 0)
+                                {
+                                    <button type="submit" data-id="@Model.Urun.Urun_Id" class="ps-btn mb-10 AnasayfaSepeteEkle">
+                                        Sepete Ekle<i class="ps-icon-next"></i>
+                                    </button>
+                                }
+                                @if (Model.Urun.Stok == 0)
+                                {
+                                    <h3 style="color: red">Ürün Stokta kalmamıştır..</h3>
+                                }
+
+                                @if (kullanici != "")
+                                {
+
+
+                                    if (ViewBag.mesaj == ">")
+                                    {
+                                        <div class="ps-product__actions">
+                                            <a class="btn mr-10 kalp" id="begendi" checked data-toggle="toggle" data-id="@Model.Urun.Urun_Id" style="background-color: red"><i class="ps-icon-heart"></i></a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="ps-product__actions">
+                                            <a class="btn mr-10 kalp" id="begenmedi" data-id="@Model.Urun.Urun_Id"><i class="ps-icon-heart"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="tab-pane" role="tabpanel" id="tab_02">
+        @foreach (var yorum in Model.Yorumlar)
+        {
+            <div class="ps-review">
+                <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
+                <div class="ps-review__content">
+                    <p>By<a href=""> @yorum.tbl_Kullanici.Kullanici_Adi</a> - @yorum.tarih</p>
+                    <header>
+                        @for (int i = 1; i <= yorum.Yildiz; i++)
+                        {
+                            <span class="fa fa-star checked"></span>
+                        }
+                        @for (int i = (int)yorum.Yildiz + 1; i <= 5; i++)
+                        {
+                            <span class="fa fa-star"></span>
+                        }
+                    </header>
+                    <p>@yorum.Icerik</p>
+                </div>
+            </div>
+        }
+        @if (kullanici != "" && Model.VarMi == null && asd!=null)
+        {
+            asd = null;
+            using (Html.BeginForm("Yorumyap", "UrunDetay", new { id = Model.Urun.Urun_Id }, FormMethod.Post))
+            {
+                @Html.Hidden("yildiz1", YildizSayisi)
+                <h4>Yorum yazın</h4>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Puan verin<span></span></label>
+                            <select class="ps-rating" data-id="@Model.Urun.Urun_Id" name="Yildiz">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
+
+
+                        <div class="form-group">
+                            <label>Yorumunuz:</label>
+                            <textarea class="form-control" rows="6" id="Icerik" name="Icerik"></textarea>
+                            <hr />
+
+                            <button type="submit" class="btn btn-success">Yorum Yap</button>
+                        </div>
+
+                    </div>
+                </div>
+                @Html.HiddenFor(i => i.Urun.Urun_Id)
+            }
+        }
+    </div>
+</main>
+<style>
+    .checked {
+        color: orange;
+    }
+</style>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Eticaret.Entities.tbl_Kategori>
+@{
+    var deleteAjaxOptions = new AjaxOptions
+    {
+        LoadingElementId = "progress",
+        Confirm = "Kategori Silmek İstediğinize emin misiniz?",
+        OnSuccess = "OnSuccess(this)"
+    };
+}
+
+<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kategoriler</font></font></h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></th>
+                        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kategori Adı</font></font></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var kategori in Model)
+                {
+             
+                <tr>
+                    <th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@kategori.Kategori_Id</font></font></th>
+                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@kategori.Kategori</font></font></td>
+                    <td>@Ajax.ActionLink("Sil", "Sil", new { Id = kategori.Kategori_Id }, deleteAjaxOptions, new { @class = "btn btn-danger btn-sm" })
+                       
+                        @Html.ActionLink("Düzenle","Duzenle",new {Id=kategori.Kategori_Id}, new { @class = "btn btn-warning btn-sm" })
+                        </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function OnSuccess(btn) {
+        $(btn).closest('tr').remove();
+
+    }
+</script>

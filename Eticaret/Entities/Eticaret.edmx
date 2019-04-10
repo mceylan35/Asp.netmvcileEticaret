@@ -1,0 +1,1031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="SiparisId" />
+          </Key>
+          <Property Name="SiparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiparisNumarasi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ToplamTutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KullaniciId" Type="int" />
+          <Property Name="SiparisTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="SiparisDetay">
+          <Key>
+            <PropertyRef Name="SiparisDetayId" />
+          </Key>
+          <Property Name="SiparisDetayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiparisId" Type="int" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="UrunId" Type="int" />
+          <Property Name="UrunSiparisTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_Duyuru">
+          <Key>
+            <PropertyRef Name="Duyuru_Id" />
+          </Key>
+          <Property Name="Duyuru_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResimURL" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Favori">
+          <Key>
+            <PropertyRef Name="Favori_Id" />
+          </Key>
+          <Property Name="Favori_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kullanici_ID" Type="int" />
+          <Property Name="Urun_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Kategori">
+          <Key>
+            <PropertyRef Name="Kategori_Id" />
+          </Key>
+          <Property Name="Kategori_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategori" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Kullanici">
+          <Key>
+            <PropertyRef Name="Kullanici_Id" />
+          </Key>
+          <Property Name="Kullanici_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kullanici_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rol_ID" Type="int" />
+          <Property Name="Eposta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="int" />
+          <Property Name="UyeKayitTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_Marka">
+          <Key>
+            <PropertyRef Name="Marka_Id" />
+          </Key>
+          <Property Name="Marka_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka_Adi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Mesaj">
+          <Key>
+            <PropertyRef Name="Mesaj_Id" />
+          </Key>
+          <Property Name="Mesaj_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Eposta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Konu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Icerik" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Rol">
+          <Key>
+            <PropertyRef Name="Rol_Id" />
+          </Key>
+          <Property Name="Rol_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Sepet">
+          <Key>
+            <PropertyRef Name="Satis_Id" />
+          </Key>
+          <Property Name="Satis_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urun_ID" Type="int" />
+          <Property Name="Adet" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Urun">
+          <Key>
+            <PropertyRef Name="Urun_Id" />
+          </Key>
+          <Property Name="Urun_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urun_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stok" Type="int" />
+          <Property Name="Seri_No" Type="nvarchar" MaxLength="250" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="Kategori_ID" Type="int" Nullable="false" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Indirim_Oranı" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Marka_ID" Type="int" />
+          <Property Name="Resim_URL" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_Yildiz">
+          <Key>
+            <PropertyRef Name="Yildiz_Id" />
+          </Key>
+          <Property Name="Yildiz_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urun_Id" Type="int" />
+          <Property Name="Yildiz" Type="float" />
+        </EntityType>
+        <EntityType Name="tbl_Yorum">
+          <Key>
+            <PropertyRef Name="Yorum_Id" />
+          </Key>
+          <Property Name="Yorum_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kullanici_ID" Type="int" />
+          <Property Name="Urun_ID" Type="int" />
+          <Property Name="Yildiz" Type="int" />
+          <Property Name="Icerik" Type="nvarchar(max)" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ziyaretci">
+          <Key>
+            <PropertyRef Name="ZiyaretciId" />
+          </Key>
+          <Property Name="ZiyaretciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZiyaretTarihi" Type="date" />
+        </EntityType>
+        <Association Name="FK_Siparis_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="SiparisId" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Favori_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="tbl_Favori" Type="Self.tbl_Favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="tbl_Favori">
+              <PropertyRef Name="Kullanici_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Favori_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Favori" Type="Self.tbl_Favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Favori">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Kullanici_tbl_Rol">
+          <End Role="tbl_Rol" Type="Self.tbl_Rol" Multiplicity="0..1" />
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Rol">
+              <PropertyRef Name="Rol_Id" />
+            </Principal>
+            <Dependent Role="tbl_Kullanici">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sepet_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Sepet" Type="Self.tbl_Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Sepet">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Urun_tbl_Kategori">
+          <End Role="tbl_Kategori" Type="Self.tbl_Kategori" Multiplicity="1" />
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kategori">
+              <PropertyRef Name="Kategori_Id" />
+            </Principal>
+            <Dependent Role="tbl_Urun">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Urun_tbl_Marka">
+          <End Role="tbl_Marka" Type="Self.tbl_Marka" Multiplicity="0..1" />
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marka">
+              <PropertyRef Name="Marka_Id" />
+            </Principal>
+            <Dependent Role="tbl_Urun">
+              <PropertyRef Name="Marka_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yildiz_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Yildiz" Type="Self.tbl_Yildiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yildiz">
+              <PropertyRef Name="Urun_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yorum_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yorum">
+              <PropertyRef Name="Kullanici_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yorum_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yorum">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EnCokSatisYapanKategori" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Encoksatisyapilanurunler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EnCokSepeteEklenenler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GunlukKayitSayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GunlukUrunSiparisSayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GunlukZiyaretciSayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HaftalikSiparis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HaftalikUye" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HaftalikZiyaretci" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ToplamUrunSatis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ToplamUyeKaydi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ToplamZiyaretSayisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiparisDetay" EntityType="Self.SiparisDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Duyuru" EntityType="Self.tbl_Duyuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Favori" EntityType="Self.tbl_Favori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Kategori" EntityType="Self.tbl_Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Kullanici" EntityType="Self.tbl_Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Marka" EntityType="Self.tbl_Marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Mesaj" EntityType="Self.tbl_Mesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Rol" EntityType="Self.tbl_Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sepet" EntityType="Self.tbl_Sepet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Yildiz" EntityType="Self.tbl_Yildiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Yorum" EntityType="Self.tbl_Yorum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ziyaretci" EntityType="Self.Ziyaretci" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Siparis_tbl_Kullanici" Association="Self.FK_Siparis_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Siparis" Association="Self.FK_SiparisDetay_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_tbl_Urun" Association="Self.FK_SiparisDetay_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Favori_tbl_Kullanici" Association="Self.FK_tbl_Favori_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="tbl_Favori" EntitySet="tbl_Favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Favori_tbl_Urun" Association="Self.FK_tbl_Favori_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Favori" EntitySet="tbl_Favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Kullanici_tbl_Rol" Association="Self.FK_tbl_Kullanici_tbl_Rol">
+            <End Role="tbl_Rol" EntitySet="tbl_Rol" />
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sepet_tbl_Urun" Association="Self.FK_tbl_Sepet_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Sepet" EntitySet="tbl_Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Urun_tbl_Kategori" Association="Self.FK_tbl_Urun_tbl_Kategori">
+            <End Role="tbl_Kategori" EntitySet="tbl_Kategori" />
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Urun_tbl_Marka" Association="Self.FK_tbl_Urun_tbl_Marka">
+            <End Role="tbl_Marka" EntitySet="tbl_Marka" />
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yildiz_tbl_Urun" Association="Self.FK_tbl_Yildiz_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Yildiz" EntitySet="tbl_Yildiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yorum_tbl_Kullanici" Association="Self.FK_tbl_Yorum_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yorum_tbl_Urun" Association="Self.FK_tbl_Yorum_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="SiparisId" />
+          </Key>
+          <Property Name="SiparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiparisNumarasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ToplamTutar" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <Property Name="SiparisTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbl_Kullanici" Relationship="Self.FK_Siparis_tbl_Kullanici" FromRole="Siparis" ToRole="tbl_Kullanici" />
+          <NavigationProperty Name="SiparisDetay" Relationship="Self.FK_SiparisDetay_Siparis" FromRole="Siparis" ToRole="SiparisDetay" />
+        </EntityType>
+        <EntityType Name="SiparisDetay">
+          <Key>
+            <PropertyRef Name="SiparisDetayId" />
+          </Key>
+          <Property Name="SiparisDetayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiparisId" Type="Int32" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="UrunId" Type="Int32" />
+          <Property Name="UrunSiparisTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_SiparisDetay_Siparis" FromRole="SiparisDetay" ToRole="Siparis" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_SiparisDetay_tbl_Urun" FromRole="SiparisDetay" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Duyuru">
+          <Key>
+            <PropertyRef Name="Duyuru_Id" />
+          </Key>
+          <Property Name="Duyuru_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResimURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Favori">
+          <Key>
+            <PropertyRef Name="Favori_Id" />
+          </Key>
+          <Property Name="Favori_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kullanici_ID" Type="Int32" />
+          <Property Name="Urun_ID" Type="Int32" />
+          <NavigationProperty Name="tbl_Kullanici" Relationship="Self.FK_tbl_Favori_tbl_Kullanici" FromRole="tbl_Favori" ToRole="tbl_Kullanici" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Favori_tbl_Urun" FromRole="tbl_Favori" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Kategori">
+          <Key>
+            <PropertyRef Name="Kategori_Id" />
+          </Key>
+          <Property Name="Kategori_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategori" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Urun_tbl_Kategori" FromRole="tbl_Kategori" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Kullanici">
+          <Key>
+            <PropertyRef Name="Kullanici_Id" />
+          </Key>
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kullanici_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <Property Name="Eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="Int32" />
+          <Property Name="UyeKayitTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_tbl_Kullanici" FromRole="tbl_Kullanici" ToRole="Siparis" />
+          <NavigationProperty Name="tbl_Favori" Relationship="Self.FK_tbl_Favori_tbl_Kullanici" FromRole="tbl_Kullanici" ToRole="tbl_Favori" />
+          <NavigationProperty Name="tbl_Rol" Relationship="Self.FK_tbl_Kullanici_tbl_Rol" FromRole="tbl_Kullanici" ToRole="tbl_Rol" />
+          <NavigationProperty Name="tbl_Yorum" Relationship="Self.FK_tbl_Yorum_tbl_Kullanici" FromRole="tbl_Kullanici" ToRole="tbl_Yorum" />
+        </EntityType>
+        <EntityType Name="tbl_Marka">
+          <Key>
+            <PropertyRef Name="Marka_Id" />
+          </Key>
+          <Property Name="Marka_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Urun_tbl_Marka" FromRole="tbl_Marka" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Mesaj">
+          <Key>
+            <PropertyRef Name="Mesaj_Id" />
+          </Key>
+          <Property Name="Mesaj_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Rol">
+          <Key>
+            <PropertyRef Name="Rol_Id" />
+          </Key>
+          <Property Name="Rol_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Kullanici" Relationship="Self.FK_tbl_Kullanici_tbl_Rol" FromRole="tbl_Rol" ToRole="tbl_Kullanici" />
+        </EntityType>
+        <EntityType Name="tbl_Sepet">
+          <Key>
+            <PropertyRef Name="Satis_Id" />
+          </Key>
+          <Property Name="Satis_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urun_ID" Type="Int32" />
+          <Property Name="Adet" Type="Int32" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Sepet_tbl_Urun" FromRole="tbl_Sepet" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Urun">
+          <Key>
+            <PropertyRef Name="Urun_Id" />
+          </Key>
+          <Property Name="Urun_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urun_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stok" Type="Int32" />
+          <Property Name="Seri_No" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kategori_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Indirim_Oranı" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Marka_ID" Type="Int32" />
+          <Property Name="Resim_URL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SiparisDetay" Relationship="Self.FK_SiparisDetay_tbl_Urun" FromRole="tbl_Urun" ToRole="SiparisDetay" />
+          <NavigationProperty Name="tbl_Favori" Relationship="Self.FK_tbl_Favori_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_Favori" />
+          <NavigationProperty Name="tbl_Kategori" Relationship="Self.FK_tbl_Urun_tbl_Kategori" FromRole="tbl_Urun" ToRole="tbl_Kategori" />
+          <NavigationProperty Name="tbl_Marka" Relationship="Self.FK_tbl_Urun_tbl_Marka" FromRole="tbl_Urun" ToRole="tbl_Marka" />
+          <NavigationProperty Name="tbl_Sepet" Relationship="Self.FK_tbl_Sepet_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_Sepet" />
+          <NavigationProperty Name="tbl_Yildiz" Relationship="Self.FK_tbl_Yildiz_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_Yildiz" />
+          <NavigationProperty Name="tbl_Yorum" Relationship="Self.FK_tbl_Yorum_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_Yorum" />
+        </EntityType>
+        <EntityType Name="tbl_Yildiz">
+          <Key>
+            <PropertyRef Name="Yildiz_Id" />
+          </Key>
+          <Property Name="Yildiz_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urun_Id" Type="Int32" />
+          <Property Name="Yildiz" Type="Double" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Yildiz_tbl_Urun" FromRole="tbl_Yildiz" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="tbl_Yorum">
+          <Key>
+            <PropertyRef Name="Yorum_Id" />
+          </Key>
+          <Property Name="Yorum_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kullanici_ID" Type="Int32" />
+          <Property Name="Urun_ID" Type="Int32" />
+          <Property Name="Yildiz" Type="Int32" />
+          <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Kullanici" Relationship="Self.FK_tbl_Yorum_tbl_Kullanici" FromRole="tbl_Yorum" ToRole="tbl_Kullanici" />
+          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_Yorum_tbl_Urun" FromRole="tbl_Yorum" ToRole="tbl_Urun" />
+        </EntityType>
+        <EntityType Name="Ziyaretci">
+          <Key>
+            <PropertyRef Name="ZiyaretciId" />
+          </Key>
+          <Property Name="ZiyaretciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZiyaretTarihi" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_Siparis_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="SiparisId" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Favori_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="tbl_Favori" Type="Self.tbl_Favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="tbl_Favori">
+              <PropertyRef Name="Kullanici_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Favori_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Favori" Type="Self.tbl_Favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Favori">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Urun_tbl_Kategori">
+          <End Role="tbl_Kategori" Type="Self.tbl_Kategori" Multiplicity="1" />
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kategori">
+              <PropertyRef Name="Kategori_Id" />
+            </Principal>
+            <Dependent Role="tbl_Urun">
+              <PropertyRef Name="Kategori_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Kullanici_tbl_Rol">
+          <End Role="tbl_Rol" Type="Self.tbl_Rol" Multiplicity="0..1" />
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Rol">
+              <PropertyRef Name="Rol_Id" />
+            </Principal>
+            <Dependent Role="tbl_Kullanici">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yorum_tbl_Kullanici">
+          <End Role="tbl_Kullanici" Type="Self.tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Kullanici">
+              <PropertyRef Name="Kullanici_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yorum">
+              <PropertyRef Name="Kullanici_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Urun_tbl_Marka">
+          <End Role="tbl_Marka" Type="Self.tbl_Marka" Multiplicity="0..1" />
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marka">
+              <PropertyRef Name="Marka_Id" />
+            </Principal>
+            <Dependent Role="tbl_Urun">
+              <PropertyRef Name="Marka_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sepet_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Sepet" Type="Self.tbl_Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Sepet">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yildiz_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Yildiz" Type="Self.tbl_Yildiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yildiz">
+              <PropertyRef Name="Urun_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Yorum_tbl_Urun">
+          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+          <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Urun">
+              <PropertyRef Name="Urun_Id" />
+            </Principal>
+            <Dependent Role="tbl_Yorum">
+              <PropertyRef Name="Urun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EticaretContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" />
+          <EntitySet Name="SiparisDetay" EntityType="Self.SiparisDetay" />
+          <EntitySet Name="tbl_Duyuru" EntityType="Self.tbl_Duyuru" />
+          <EntitySet Name="tbl_Favori" EntityType="Self.tbl_Favori" />
+          <EntitySet Name="tbl_Kategori" EntityType="Self.tbl_Kategori" />
+          <EntitySet Name="tbl_Kullanici" EntityType="Self.tbl_Kullanici" />
+          <EntitySet Name="tbl_Marka" EntityType="Self.tbl_Marka" />
+          <EntitySet Name="tbl_Mesaj" EntityType="Self.tbl_Mesaj" />
+          <EntitySet Name="tbl_Rol" EntityType="Self.tbl_Rol" />
+          <EntitySet Name="tbl_Sepet" EntityType="Self.tbl_Sepet" />
+          <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" />
+          <EntitySet Name="tbl_Yildiz" EntityType="Self.tbl_Yildiz" />
+          <EntitySet Name="tbl_Yorum" EntityType="Self.tbl_Yorum" />
+          <EntitySet Name="Ziyaretci" EntityType="Self.Ziyaretci" />
+          <AssociationSet Name="FK_Siparis_tbl_Kullanici" Association="Self.FK_Siparis_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Siparis" Association="Self.FK_SiparisDetay_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_tbl_Urun" Association="Self.FK_SiparisDetay_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Favori_tbl_Kullanici" Association="Self.FK_tbl_Favori_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="tbl_Favori" EntitySet="tbl_Favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Favori_tbl_Urun" Association="Self.FK_tbl_Favori_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Favori" EntitySet="tbl_Favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Urun_tbl_Kategori" Association="Self.FK_tbl_Urun_tbl_Kategori">
+            <End Role="tbl_Kategori" EntitySet="tbl_Kategori" />
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Kullanici_tbl_Rol" Association="Self.FK_tbl_Kullanici_tbl_Rol">
+            <End Role="tbl_Rol" EntitySet="tbl_Rol" />
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yorum_tbl_Kullanici" Association="Self.FK_tbl_Yorum_tbl_Kullanici">
+            <End Role="tbl_Kullanici" EntitySet="tbl_Kullanici" />
+            <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Urun_tbl_Marka" Association="Self.FK_tbl_Urun_tbl_Marka">
+            <End Role="tbl_Marka" EntitySet="tbl_Marka" />
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sepet_tbl_Urun" Association="Self.FK_tbl_Sepet_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Sepet" EntitySet="tbl_Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yildiz_tbl_Urun" Association="Self.FK_tbl_Yildiz_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Yildiz" EntitySet="tbl_Yildiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Yorum_tbl_Urun" Association="Self.FK_tbl_Yorum_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+          </AssociationSet>
+          <FunctionImport Name="EnCokSatisYapanKategori" ReturnType="Collection(Model.EnCokSatisYapanKategori_Result)" />
+          <FunctionImport Name="Encoksatisyapilanurunler" ReturnType="Collection(Model.Encoksatisyapilanurunler_Result)" />
+          <FunctionImport Name="EnCokSepeteEklenenler" ReturnType="Collection(Model.EnCokSepeteEklenenler_Result)" />
+          <FunctionImport Name="GunlukKayitSayisi" ReturnType="Collection(Model.GunlukKayitSayisi_Result)" />
+          <FunctionImport Name="GunlukUrunSiparisSayisi" ReturnType="Collection(Model.GunlukUrunSiparisSayisi_Result)" />
+          <FunctionImport Name="GunlukZiyaretciSayisi" ReturnType="Collection(Model.GunlukZiyaretciSayisi_Result)" />
+          <FunctionImport Name="HaftalikSiparis" ReturnType="Collection(Model.HaftalikSiparis_Result)" />
+          <FunctionImport Name="HaftalikUye" ReturnType="Collection(Model.HaftalikUye_Result)" />
+          <FunctionImport Name="HaftalikZiyaretci" ReturnType="Collection(Model.HaftalikZiyaretci_Result)" />
+          <FunctionImport Name="ToplamUrunSatis" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="ToplamUyeKaydi" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="ToplamZiyaretSayisi" ReturnType="Collection(Int32)" />
+        </EntityContainer>
+        <ComplexType Name="EnCokSatisYapanKategori_Result">
+          <Property Type="String" Name="Kategori" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="adet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Encoksatisyapilanurunler_Result">
+          <Property Type="Int32" Name="UrunId" Nullable="true" />
+          <Property Type="String" Name="Urun_Adi" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="adet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="EnCokSepeteEklenenler_Result">
+          <Property Type="Int32" Name="Urun_ID" Nullable="true" />
+          <Property Type="String" Name="Urun_Adi" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="adet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GunlukKayitSayisi_Result">
+          <Property Type="DateTime" Name="UyeKayitTarihi" Nullable="true" />
+          <Property Type="Int32" Name="adet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GunlukUrunSiparisSayisi_Result">
+          <Property Type="DateTime" Name="UrunSiparisTarihi" Nullable="true" />
+          <Property Type="Int32" Name="adet" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GunlukZiyaretciSayisi_Result">
+          <Property Type="DateTime" Name="ZiyaretTarihi" Nullable="true" />
+          <Property Type="Int32" Name="ziyaretsayi" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="HaftalikSiparis_Result">
+          <Property Type="String" Name="hafta" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="HaftalikSiparis" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="HaftalikUye_Result">
+          <Property Type="String" Name="hafta" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="HaftalikKullanici" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="HaftalikZiyaretci_Result">
+          <Property Type="String" Name="hafta" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="HaftalikZiyaretci" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EticaretContext">
+          <EntitySetMapping Name="Siparis">
+            <EntityTypeMapping TypeName="Model.Siparis">
+              <MappingFragment StoreEntitySet="Siparis">
+                <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+                <ScalarProperty Name="SiparisNumarasi" ColumnName="SiparisNumarasi" />
+                <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="SiparisTarihi" ColumnName="SiparisTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiparisDetay">
+            <EntityTypeMapping TypeName="Model.SiparisDetay">
+              <MappingFragment StoreEntitySet="SiparisDetay">
+                <ScalarProperty Name="SiparisDetayId" ColumnName="SiparisDetayId" />
+                <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="UrunSiparisTarihi" ColumnName="UrunSiparisTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Duyuru">
+            <EntityTypeMapping TypeName="Model.tbl_Duyuru">
+              <MappingFragment StoreEntitySet="tbl_Duyuru">
+                <ScalarProperty Name="Duyuru_Id" ColumnName="Duyuru_Id" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ResimURL" ColumnName="ResimURL" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Favori">
+            <EntityTypeMapping TypeName="Model.tbl_Favori">
+              <MappingFragment StoreEntitySet="tbl_Favori">
+                <ScalarProperty Name="Favori_Id" ColumnName="Favori_Id" />
+                <ScalarProperty Name="Kullanici_ID" ColumnName="Kullanici_ID" />
+                <ScalarProperty Name="Urun_ID" ColumnName="Urun_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Kategori">
+            <EntityTypeMapping TypeName="Model.tbl_Kategori">
+              <MappingFragment StoreEntitySet="tbl_Kategori">
+                <ScalarProperty Name="Kategori_Id" ColumnName="Kategori_Id" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Kullanici">
+            <EntityTypeMapping TypeName="Model.tbl_Kullanici">
+              <MappingFragment StoreEntitySet="tbl_Kullanici">
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Kullanici_Adi" ColumnName="Kullanici_Adi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="UyeKayitTarihi" ColumnName="UyeKayitTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Marka">
+            <EntityTypeMapping TypeName="Model.tbl_Marka">
+              <MappingFragment StoreEntitySet="tbl_Marka">
+                <ScalarProperty Name="Marka_Id" ColumnName="Marka_Id" />
+                <ScalarProperty Name="Marka_Adi" ColumnName="Marka_Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Mesaj">
+            <EntityTypeMapping TypeName="Model.tbl_Mesaj">
+              <MappingFragment StoreEntitySet="tbl_Mesaj">
+                <ScalarProperty Name="Mesaj_Id" ColumnName="Mesaj_Id" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Rol">
+            <EntityTypeMapping TypeName="Model.tbl_Rol">
+              <MappingFragment StoreEntitySet="tbl_Rol">
+                <ScalarProperty Name="Rol_Id" ColumnName="Rol_Id" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sepet">
+            <EntityTypeMapping TypeName="Model.tbl_Sepet">
+              <MappingFragment StoreEntitySet="tbl_Sepet">
+                <ScalarProperty Name="Satis_Id" ColumnName="Satis_Id" />
+                <ScalarProperty Name="Urun_ID" ColumnName="Urun_ID" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Urun">
+            <EntityTypeMapping TypeName="Model.tbl_Urun">
+              <MappingFragment StoreEntitySet="tbl_Urun">
+                <ScalarProperty Name="Urun_Id" ColumnName="Urun_Id" />
+                <ScalarProperty Name="Urun_Adi" ColumnName="Urun_Adi" />
+                <ScalarProperty Name="Stok" ColumnName="Stok" />
+                <ScalarProperty Name="Seri_No" ColumnName="Seri_No" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Kategori_ID" ColumnName="Kategori_ID" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Indirim_Oranı" ColumnName="Indirim_Oranı" />
+                <ScalarProperty Name="Marka_ID" ColumnName="Marka_ID" />
+                <ScalarProperty Name="Resim_URL" ColumnName="Resim_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Yildiz">
+            <EntityTypeMapping TypeName="Model.tbl_Yildiz">
+              <MappingFragment StoreEntitySet="tbl_Yildiz">
+                <ScalarProperty Name="Yildiz_Id" ColumnName="Yildiz_Id" />
+                <ScalarProperty Name="Urun_Id" ColumnName="Urun_Id" />
+                <ScalarProperty Name="Yildiz" ColumnName="Yildiz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Yorum">
+            <EntityTypeMapping TypeName="Model.tbl_Yorum">
+              <MappingFragment StoreEntitySet="tbl_Yorum">
+                <ScalarProperty Name="Yorum_Id" ColumnName="Yorum_Id" />
+                <ScalarProperty Name="Kullanici_ID" ColumnName="Kullanici_ID" />
+                <ScalarProperty Name="Urun_ID" ColumnName="Urun_ID" />
+                <ScalarProperty Name="Yildiz" ColumnName="Yildiz" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ziyaretci">
+            <EntityTypeMapping TypeName="Model.Ziyaretci">
+              <MappingFragment StoreEntitySet="Ziyaretci">
+                <ScalarProperty Name="ZiyaretciId" ColumnName="ZiyaretciId" />
+                <ScalarProperty Name="ZiyaretTarihi" ColumnName="ZiyaretTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EnCokSatisYapanKategori" FunctionName="Model.Store.EnCokSatisYapanKategori">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.EnCokSatisYapanKategori_Result">
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Encoksatisyapilanurunler" FunctionName="Model.Store.Encoksatisyapilanurunler">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.Encoksatisyapilanurunler_Result">
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="Urun_Adi" ColumnName="Urun_Adi" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EnCokSepeteEklenenler" FunctionName="Model.Store.EnCokSepeteEklenenler">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.EnCokSepeteEklenenler_Result">
+                <ScalarProperty Name="Urun_ID" ColumnName="Urun_ID" />
+                <ScalarProperty Name="Urun_Adi" ColumnName="Urun_Adi" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GunlukKayitSayisi" FunctionName="Model.Store.GunlukKayitSayisi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.GunlukKayitSayisi_Result">
+                <ScalarProperty Name="UyeKayitTarihi" ColumnName="UyeKayitTarihi" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GunlukUrunSiparisSayisi" FunctionName="Model.Store.GunlukUrunSiparisSayisi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.GunlukUrunSiparisSayisi_Result">
+                <ScalarProperty Name="UrunSiparisTarihi" ColumnName="UrunSiparisTarihi" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GunlukZiyaretciSayisi" FunctionName="Model.Store.GunlukZiyaretciSayisi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.GunlukZiyaretciSayisi_Result">
+                <ScalarProperty Name="ZiyaretTarihi" ColumnName="ZiyaretTarihi" />
+                <ScalarProperty Name="ziyaretsayi" ColumnName="ziyaretsayi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HaftalikSiparis" FunctionName="Model.Store.HaftalikSiparis">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.HaftalikSiparis_Result">
+                <ScalarProperty Name="hafta" ColumnName="hafta" />
+                <ScalarProperty Name="HaftalikSiparis" ColumnName="HaftalikSiparis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HaftalikUye" FunctionName="Model.Store.HaftalikUye">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.HaftalikUye_Result">
+                <ScalarProperty Name="hafta" ColumnName="hafta" />
+                <ScalarProperty Name="HaftalikKullanici" ColumnName="HaftalikKullanici" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HaftalikZiyaretci" FunctionName="Model.Store.HaftalikZiyaretci">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.HaftalikZiyaretci_Result">
+                <ScalarProperty Name="hafta" ColumnName="hafta" />
+                <ScalarProperty Name="HaftalikZiyaretci" ColumnName="HaftalikZiyaretci" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ToplamUrunSatis" FunctionName="Model.Store.ToplamUrunSatis" />
+          <FunctionImportMapping FunctionImportName="ToplamUyeKaydi" FunctionName="Model.Store.ToplamUyeKaydi" />
+          <FunctionImportMapping FunctionImportName="ToplamZiyaretSayisi" FunctionName="Model.Store.ToplamZiyaretSayisi" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
